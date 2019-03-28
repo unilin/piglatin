@@ -1,0 +1,6 @@
+*~
+*.beam
+.erlang.mk/*
+deps/*
+ebin/*
+piglatin.d
