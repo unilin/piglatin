@@ -23,7 +23,7 @@ combine_it(List) -> combine_it(List, []).
 combine_it([], Acc) -> reverse(Acc);
 combine_it([H|T], Acc) -> combine_it(T, [H|Acc]);
 combine_it([[H1|T1]|[H2|T2]], Acc) -> combine_it([T1|[H2|T2]], [H1|Acc]);
-combine_it([[]|[H|T]], Acc) -> combine_it([H|T], Acc).
+combine_it([[]|[H|T]], Acc) -> combine_it([H|T], [$\s|Acc]).
 
 
 
