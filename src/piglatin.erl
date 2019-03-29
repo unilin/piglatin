@@ -13,7 +13,7 @@ translate(List) -> translate(List, [], []).
 
 translate([], [], Acc) ->  combine_it(reverse(Acc));% ["ellohey", "orldwey"]
 translate([], Acc1, Acc2) -> translate([], [], [pig_it(reverse(Acc1))|Acc2]);
-translate([$\s|T], Acc1, Acc2) -> translate(T, [], [pig_it(reverse(Acc1)) | Acc2]);
+translate([$\s|T], Acc1, Acc2) -> translate(T, [], [$\s, pig_it(reverse(Acc1)) | Acc2]);
 translate([H|T], Acc1, Acc2) -> translate(T, [H|Acc1], Acc2).
 
 pig_it([H|T]) -> T ++ [H] ++ "ay".
@@ -21,9 +21,7 @@ pig_it([H|T]) -> T ++ [H] ++ "ay".
 combine_it(List) -> combine_it(List, []).
 
 combine_it([], Acc) -> reverse(Acc);
-combine_it([H|T], Acc) -> combine_it(T, [H|Acc]);
-combine_it([[H1|T1]|[H2|T2]], Acc) -> combine_it([T1|[H2|T2]], [H1|Acc]);
-combine_it([[]|[H|T]], Acc) -> combine_it([H|T], [$\s|Acc]).
 
-
-
+combine_it([[]|T], Acc) -> combine_it(T, Acc);
+combine_it([[H1|T1]|T], Acc) -> combine_it([T1|T], [H1|Acc]);
+combine_it([H|T], Acc) -> combine_it(T, [H|Acc]).
